@@ -1,0 +1,9 @@
+{
+    "path" : "~/ga-report",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

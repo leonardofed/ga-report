@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Report for email\"\noutput:\n  html_document:\n    mathjax: null\n    theme: null\n    highlight: null\n    self_contained: no\n---\n\n  \n```{r, echo=FALSE}\nlibrary(\"googleAnalyticsR\")\nlibrary(\"ggplot2\")\n\nga_id = 62964296\nga_auth()\n\ngadata <- google_analytics_4(ga_id, \n                             date_range = c(\"2016-01-01\", \"2017-01-01\"), \n                             metrics = c(\"ga:avgPageLoadTime\", \"ga:avgDomInteractiveTime\", \"ga:avgDomContentLoadedTime\", \"ga:pageLoadSample\"), \n                             dimensions = c(\"ga:browser\", \"ga:browserVersion\")\n)\n\n# Now that we have a few data we have to manipulate them in order to pull out some infos\n\ngadata$avgPageLoadTime <- round(gadata$avgPageLoadTime, digits = 2)\ngadata$avgDomInteractiveTime <- round(gadata$avgDomInteractiveTime, digits = 2)\ngadata$avgDomContentLoadedTime <- round(gadata$avgDomContentLoadedTime, digits = 2)\n\ngadata # Now looks better, uh?\n\n# Now let's order our data\ngadata2 <- gadata[with(gadata, order(-gadata$avgPageLoadTime)), ]\n\n# Let's make a more interesting scatterplot graph\n ggplot(gadata, aes(x=browserVersion, y=avgPageLoadTime, size = avgPageLoadTime, color = browser)) +\n  geom_point() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1))\n```",
+    "created" : 1484660500182.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1770304652",
+    "id" : "3D4B79F5",
+    "lastKnownWriteTime" : 1484665828,
+    "last_content_update" : 1484665828711,
+    "path" : "~/ga-report/report-ga.Rmd",
+    "project_path" : "report-ga.Rmd",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

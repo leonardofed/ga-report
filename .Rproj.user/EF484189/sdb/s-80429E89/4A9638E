@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Site Speed Metrics by Browser & Browser Version\n\nlibrary(\"googleAnalyticsR\")\nlibrary(\"ggplot2\")\n\nga_id = 62964296\nga_auth()\n\ngadata <- google_analytics_4(ga_id, \n                             date_range = c(\"2016-01-01\", \"2017-01-01\"), \n                             metrics = c(\"ga:avgPageLoadTime\", \"ga:avgDomInteractiveTime\", \"ga:avgDomContentLoadedTime\", \"ga:pageLoadSample\"), \n                             dimensions = c(\"ga:browser\", \"ga:browserVersion\")\n)\n\n# Now that we have a few data we have to manipulate them in order to pull out some infos\n\ngadata$avgPageLoadTime <- round(gadata$avgPageLoadTime, digits = 2)\ngadata$avgDomInteractiveTime <- round(gadata$avgDomInteractiveTime, digits = 2)\ngadata$avgDomContentLoadedTime <- round(gadata$avgDomContentLoadedTime, digits = 2)\n\ngadata # Now looks better, uh?\n\n# Now let's order our data\ngadata2 <- gadata[with(gadata, order(-gadata$avgPageLoadTime)), ]\n\n# Let's make a more interesting scatterplot graph\nggplot(gadata, aes(x=browserVersion, y=avgPageLoadTime, size = avgPageLoadTime, color = browser)) +\n  geom_point() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1))\n\nrm(list=ls()) # Now clean up your environment\n\n# If you care about UX (and you should), you care about site speed.\n# This R script will help you understading whether or not your site has a problem.\n# Which browsers are experiencing slow load times?",
+    "created" : 1484660075589.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2259690559",
+    "id" : "4A9638E",
+    "lastKnownWriteTime" : 1484660576,
+    "last_content_update" : 1484660576597,
+    "path" : "~/ga-report/report-ga.R",
+    "project_path" : "report-ga.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

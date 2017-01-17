@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# compile using rmarkdown\n\ninstall.packages(\"rmarkdown\")\nlibrary(rmarkdown)\nrmarkdown::render(\"report-ga.Rmd\")\n\ninstall.packages(\"mailR\")\nlibrary(mailR)\n\n?markdown::markdownHTMLOptions\n\nsend.mail(from = \"me@leonardofederico.com\",\n          to = \"me@leonardofederico.com\",\n          subject = \"R Markdown Report - rmarkdown\",\n          html = T,\n          inline = T,\n          body = \"report-ga.html\",\n          smtp = list(host.name = \"smtp.gmail.com\", port = 465, user.name = \"me@leonardofederico.com\", passwd = \"fidelio10\", ssl = T),\n          authenticate = T,\n          send = T)\n\n#compile using knitr\nlibrary(knitr)\nrmarkdown::render(\"report-ga.Rmd\")\n\nsend.mail(from = \"me@leonardofederico.com\",\n          to = \"me@leonardofederico.com\",\n          subject = \"R Markdown Report - knitr\",\n          html = T,\n          inline = T,\n          body = \"report-ga.html\",\n          smtp = list(host.name = \"smtp.gmail.com\", port = 587, user.name = \"me@leonardofederico.com\", passwd = \"fidelio10\", ssl = T),\n          authenticate = T,\n          send = T)\n\n# https://www.google.com/settings/security/lesssecureapps\n",
+    "created" : 1484660587043.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1626922525",
+    "id" : "72E3AED0",
+    "lastKnownWriteTime" : 1484663831,
+    "last_content_update" : 1484676371228,
+    "path" : "~/ga-report/send_email.R",
+    "project_path" : "send_email.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
