@@ -2,10 +2,16 @@
 
 # install.packages("rmarkdown")
 library(rmarkdown)
-rmarkdown::render("report-ga.Rmd")
+rmarkdown::render("daily-report.Rmd")
 
 install.packages("mailR")
 library(mailR)
+
+setwd('../ga-report')
+system("python -m premailer -f daily-report.html -o ready-weekly-report.html")
+
+file.path(R.home("bin"), "R")
+
 
 # ?markdown::markdownHTMLOptions
 
@@ -19,5 +25,5 @@ send.mail(from = "me@leonardofederico.com",
           authenticate = T,
           send = T)
 
-
 ### https://www.google.com/settings/security/lesssecureapps
+

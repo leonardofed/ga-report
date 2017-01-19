@@ -6,6 +6,7 @@ output:
     theme: null
     highlight: null
     self_contained: no
+    css: styles.css
 ---
 
 ```{r, echo=FALSE}
